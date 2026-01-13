@@ -76,6 +76,30 @@ const useTaskStore = create(
         },
 
 
+        deleteTask : async(task_id) =>{
+            set({isLoading: true});
+            try{
+                const token = localStorage.getItem('access_token');
+                await axios.delete(`${API_URL}delete_task/`, {
+                headers: { Authorization: `Bearer ${token}` },
+                data: { task_id: task_id } 
+            });
+
+                await get().fetchTasks();
+
+                set({ isLoading: false });
+                return true;
+
+
+            }catch(err){
+                const errorMessage = err.response?.data?.error || "Failed to delete task";
+                set({ error: errorMessage, isLoading: false });
+                return false;
+            }
+
+        },
+
+
     })
 );
 
