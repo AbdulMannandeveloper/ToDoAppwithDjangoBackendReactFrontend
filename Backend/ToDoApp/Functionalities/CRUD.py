@@ -18,7 +18,7 @@ def create(request):
         serializer.save(user=request.user) 
         print("test two")
         return Response({'message': 'Task Created'}, status=status.HTTP_201_CREATED)
-    
+    print(serializer)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

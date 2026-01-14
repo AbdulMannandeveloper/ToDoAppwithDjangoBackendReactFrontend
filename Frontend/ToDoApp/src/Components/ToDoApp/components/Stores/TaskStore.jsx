@@ -30,7 +30,10 @@ const useTaskStore = create(
             try{
                 const token = localStorage.getItem('access_token');
                 const response = await axios.post(`${API_URL}create_task/`, 
-                    { task: taskTitle },
+                    { 
+                        task: taskTitle,
+                        is_done: false
+                    },
                     { headers: {Authorization: `Bearer ${token}`} },
                 );
 

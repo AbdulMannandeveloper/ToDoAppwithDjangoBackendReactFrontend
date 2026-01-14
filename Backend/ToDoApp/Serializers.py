@@ -1,6 +1,7 @@
 from rest_framework import serializers
+from .models import Tasks
 
-class TaskSerializer(serializers.Serializer):
-    task_id = serializers.IntegerField()
-    task = serializers.CharField(max_length = 500)
-    is_done = serializers.BooleanField()
+class TaskSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tasks
+        fields = ['task', 'is_done']
