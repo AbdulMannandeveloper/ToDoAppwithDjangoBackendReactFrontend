@@ -17,9 +17,6 @@ const ChangePassword = () =>{
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log('username ', formData.username)
-        console.log('new pass', formData.new_password)
-        console.log('old pass', formData.old_password)
         const success = await changePassword(formData.username, formData.new_password, formData.old_password);
 
         if(success){

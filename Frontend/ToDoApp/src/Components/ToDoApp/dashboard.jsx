@@ -19,10 +19,7 @@ const Dashboard = () => {
     }, [isAuthenticated, navigate]);
 
     const handleLogout = () => {
-        console.log('testing');
         logout()
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
 
         navigate('/login'); // Force the screen change immediately
     };

@@ -69,15 +69,12 @@ const useTaskStore = create(
                 set({ isLoading: false });
                 return true;
 
-
             }catch(err){
                 const errorMessage = err.response?.data?.error || "Failed to update task";
                 set({ error: errorMessage, isLoading: false });
                 return false;
             }
-
         },
-
 
         deleteTask : async(task_id) =>{
             set({isLoading: true});

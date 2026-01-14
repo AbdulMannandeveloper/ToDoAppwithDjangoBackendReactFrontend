@@ -4,7 +4,6 @@ import { useState } from 'react';
 
 const Login = () =>{
     const navigate = useNavigate();
-    console.log('Here');
     const login = useAuthStore((state) => state.login);
     const isLoading = useAuthStore((state) => state.isLoading);
     const error = useAuthStore((state) => state.error);
@@ -16,7 +15,6 @@ const Login = () =>{
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        console.log('hello');
         const success = await login(formData.username, formData.password);
 
         if(success){

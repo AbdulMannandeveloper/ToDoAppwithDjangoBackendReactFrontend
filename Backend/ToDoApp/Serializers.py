@@ -4,4 +4,8 @@ from .models import Tasks
 class TaskSerializer(serializers.ModelSerializer):
     class Meta:
         model = Tasks
-        fields = ['task', 'is_done']
+        fields = '__all__'
+
+        extra_kwargs = {
+            'user': {'read_only': True}
+        }

@@ -12,13 +12,9 @@ from rest_framework import status
 
 def create(request):
     serializer = TaskSerializer(data=request.data)
-    print("test one")
     if serializer.is_valid():
-        print('asd')
         serializer.save(user=request.user) 
-        print("test two")
         return Response({'message': 'Task Created'}, status=status.HTTP_201_CREATED)
-    print(serializer)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
@@ -31,8 +27,7 @@ def read(request):
 def update(request):
     task_id = request.data.get('task_id')
     try:
-        result = Tasks.objects.get(task_id = task_id, user = request.user)
-
+        result = Tasks.objects.get(id = task_id, user = request.user)
 
     except Tasks.DoesNotExist:
         return Response({'Response':'Data does not exist'}, status=status.HTTP_404_NOT_FOUND)
@@ -51,7 +46,7 @@ def update(request):
 def delete(request):
     task = request.data.get('task_id')
     try:
-        result = Tasks.objects.get(task_id = task, user = request.user)
+        result = Tasks.objects.get(id = task, user = request.user)
 
     except Tasks.DoesNotExist:
         return Response({'Response':'Data does not exist'}, status=status.HTTP_404_NOT_FOUND)
