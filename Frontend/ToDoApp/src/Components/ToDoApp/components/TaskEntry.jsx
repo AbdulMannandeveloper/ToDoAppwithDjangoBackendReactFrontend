@@ -3,7 +3,7 @@ import { useState } from  'react'
 
 const TaskEntry = () => {
     const [input, setInput] = useState('');
-    const setTask = useTaskStore((state)=> state.addTask);
+    const addTask = useTaskStore((state)=> state.addTask);
 
     const handleSubmit = (e) => {
         e.preventDefault();
