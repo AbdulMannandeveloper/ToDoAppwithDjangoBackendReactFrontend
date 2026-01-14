@@ -29,7 +29,7 @@ const useTaskStore = create(
             set({isLoading: true});
             try{
                 const token = localStorage.getItem('access_token');
-                const response = await axios.post(`${API_URL}create_task`, 
+                const response = await axios.post(`${API_URL}create_task/`, 
                     { task: taskTitle },
                     { headers: {Authorization: `Bearer ${token}`} },
                 );
@@ -52,7 +52,7 @@ const useTaskStore = create(
             set({isLoading: true});
             try{
                 const token = localStorage.getItem('access_token');
-                const response = await axios.put(`${API_URL}update_task`, 
+                const response = await axios.put(`${API_URL}update_task/`, 
                     { 
                         task: taskTitle,
                         task_id: task_id,

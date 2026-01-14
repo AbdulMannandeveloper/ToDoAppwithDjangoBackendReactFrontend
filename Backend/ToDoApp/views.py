@@ -7,6 +7,7 @@ from .Functionalities.CRUD import create, update, read, delete
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def create_task(request):
+    print('checking')
     return create(request= request)
 
 @api_view(['GET'])

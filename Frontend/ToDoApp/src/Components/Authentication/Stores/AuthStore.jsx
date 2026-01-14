@@ -80,11 +80,9 @@ const useAuthStore = create(
 
                 const response = await axios.put(
                     `${API_URL}change-password/`, {
+                        username: username,
                         old_password: old_password,
                         new_password: new_password,
-                    },
-                    {
-                        headers: { Authorization: `Bearer ${token}` } // <--- CRITICAL
                     }
                 );
 

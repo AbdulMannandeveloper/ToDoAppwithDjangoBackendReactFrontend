@@ -5,7 +5,7 @@ import { useState } from 'react';
 const ChangePassword = () =>{
     const navigate = useNavigate();
 
-    const ChangePassword = useAuthStore((state) => state.changePassword);
+    const changePassword = useAuthStore((state) => state.changePassword);
     const isLoading = useAuthStore((state) => state.isLoading);
     const error = useAuthStore((state) => state.error);
 
@@ -17,13 +17,19 @@ const ChangePassword = () =>{
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-
-        const success = await ChangePassword(formData.old_password, formData.new_password);
+        console.log('username ', formData.username)
+        console.log('new pass', formData.new_password)
+        console.log('old pass', formData.old_password)
+        const success = await changePassword(formData.username, formData.new_password, formData.old_password);
 
         if(success){
             navigate('/login');
         }
     };
+
+    const handleGoToLoginPage = () => {
+        navigate('/login');
+    }
 
     return (
         <>
@@ -69,6 +75,12 @@ const ChangePassword = () =>{
 
                             {isLoading ? 'Password is Changing...' : 'Change Password'}
 
+                        </button>
+
+                        <button
+                            onClick={handleGoToLoginPage}
+                        >
+                            Go To Login Page
                         </button>
 
 

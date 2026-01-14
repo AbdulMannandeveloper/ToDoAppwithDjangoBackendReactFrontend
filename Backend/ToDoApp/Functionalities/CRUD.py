@@ -11,14 +11,15 @@ from rest_framework import status
 
 
 def create(request):
-    serializer = TaskSerializer(data = request.data)
+    serializer = TaskSerializer(data=request.data)
+    print("test one")
     if serializer.is_valid():
-        Tasks.objects.create(
-            serializer.save(user = request.user)
-        )
+        print('asd')
+        serializer.save(user=request.user) 
+        print("test two")
         return Response({'message': 'Task Created'}, status=status.HTTP_201_CREATED)
-    return Response({'message': 'Something went wrong'}, status=status.HTTP_400_BAD_REQUEST)
-
+    
+    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 def read(request):

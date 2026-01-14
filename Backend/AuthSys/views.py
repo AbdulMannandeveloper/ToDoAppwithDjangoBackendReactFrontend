@@ -53,9 +53,12 @@ def sign_up(request):
 @api_view(['PUT'])
 @permission_classes([AllowAny])
 def change_password(request):
+    print('task entered')
+    print(request.data)
     serializer = ChangePasswordSerializer(data = request.data)
-
+    print('check 1')
     if not serializer.is_valid():
+        print('check 2')
         return Response(serializer.errors, status=400)
     print(serializer)
     username = serializer.validated_data['username']

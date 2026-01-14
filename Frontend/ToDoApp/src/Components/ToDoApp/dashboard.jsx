@@ -19,7 +19,11 @@ const Dashboard = () => {
     }, [isAuthenticated, navigate]);
 
     const handleLogout = () => {
-        logout(); // Clear the data
+        console.log('testing');
+        logout()
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+
         navigate('/login'); // Force the screen change immediately
     };
 
@@ -30,7 +34,7 @@ const Dashboard = () => {
             <Lists />
 
             <button 
-                onClick={() => {handleLogout}}
+                onClick={() => {handleLogout()}}
             >
                 LogOut
             </button>
