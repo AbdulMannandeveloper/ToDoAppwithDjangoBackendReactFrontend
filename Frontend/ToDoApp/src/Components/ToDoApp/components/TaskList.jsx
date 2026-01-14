@@ -1,12 +1,12 @@
 import useTaskStore from "./Stores/TaskStore";
 import useFilterStore from "./Stores/FilterStore";
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 
 const Lists = () => {
     const tasks = useTaskStore((state) => state.tasks);
     const editTask = useTaskStore((state) => state.editTask);
     const deleteTask = useTaskStore((state) => state.deleteTask);
-    const readTask = useTaskStore((state) => state.fetchTasks);
+    const fetchTasks = useTaskStore((state) => state.fetchTasks);
 
     const filter = useTaskStore((state) => state.filter);
 
@@ -14,7 +14,7 @@ const Lists = () => {
         fetchTasks();
     }, []);
     
-    const [editingId, setEditingId] = useState(null); 
+    const [editingId, setEditingId] = useState(); 
     const [editText, setEditText] = useState('');
 
     const startEdit = (task) => {
@@ -50,7 +50,7 @@ const Lists = () => {
     return (
         <>
             <div>
-                {task.length === 0?(
+                {tasks.length === 0?(
                     <li>No Task Found</li>
                 ):(
                     tasks.map((task) => {

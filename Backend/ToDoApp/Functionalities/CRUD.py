@@ -6,7 +6,7 @@ from django import forms
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
-from Serializers import TaskSerializer
+from ..Serializers import TaskSerializer
 from rest_framework import status
 
 

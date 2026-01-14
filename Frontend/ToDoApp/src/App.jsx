@@ -8,6 +8,7 @@ import Dashboard from './Components/ToDoApp/dashboard';
 import useAuthStore from './Components/Authentication/Stores/AuthStore';
 
 function App() {
+  console.log('Entered in the App');
   const isAuthenticated = useAuthStore((state) => state.isAuthenticated);
 
   return (
@@ -34,8 +35,8 @@ function App() {
         />
         
         <Route 
-            path="/change-password" 
-            element={isAuthenticated ? <ChangePassword /> : <Navigate to="/login" />} 
+            path="/ChangePassword" 
+            element={<ChangePassword />} 
         />
 
         <Route 

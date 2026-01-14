@@ -10,11 +10,11 @@ const Filters = () => {
                 {['all', 'completed','active'].map((f) => (
                     <button
                         key={f}
-                        className={`filter-btn ${filter === f ? 'active' : ''}`}
+                        className={`filter-btn ${Filter === f ? 'active' : ''}`}
                         onClick={() => setFilter(f)}
                     >
                         {
-                            f.chartat(0).toLowerCase() + f.slice(1)
+                            f.charAt(0).toLowerCase() + f.slice(1)
                         }
                     
 

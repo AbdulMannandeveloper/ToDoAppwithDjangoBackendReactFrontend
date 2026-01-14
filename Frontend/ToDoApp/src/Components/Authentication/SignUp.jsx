@@ -1,4 +1,4 @@
-import useAuthStore from '../Stores/AuthStore';
+import useAuthStore from './Stores/AuthStore';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -6,8 +6,8 @@ const SignUp = () =>{
     const navigate = useNavigate();
 
     const SignUp = useAuthStore((state) => state.sign_up);
-    const {isLoading} = useAuthStore((state) => state.isLoading);
-    const {error} = useAuthStore((state) => state.error);
+    const isLoading = useAuthStore((state) => state.isLoading);
+    const error = useAuthStore((state) => state.error);
 
     const [formData, setFormData] = useState({
         username: '',
@@ -62,7 +62,7 @@ const SignUp = () =>{
                         <input
                             type='password'
                             value={formData.password}
-                            onChange={(e) => setFormData({...formData, username: e.target.value})}
+                            onChange={(e) => setFormData({...formData, password: e.target.value})}
                             required                                                   
                         />
 
@@ -71,7 +71,7 @@ const SignUp = () =>{
                             disabled= {isLoading}
                         >
 
-                            {isLoading ? 'Signed Up...' : 'SignedUp'}
+                            {isLoading ? 'Signed Up...' : 'SignUp'}
 
                         </button>
 

@@ -1,22 +1,22 @@
-import useAuthStore from '../Stores/AuthStore';
+import useAuthStore from './Stores/AuthStore';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 const Login = () =>{
     const navigate = useNavigate();
-
-    const {login} = useAuthStore((state) => state.login);
-    const {isLoading} = useAuthStore((state) => state.isLoading);
-    const {error} = useAuthStore((state) => state.error);
+    console.log('Here');
+    const login = useAuthStore((state) => state.login);
+    const isLoading = useAuthStore((state) => state.isLoading);
+    const error = useAuthStore((state) => state.error);
 
     const [formData, setFormData] = useState({
         username: '',
         password: '',
     });
 
-    const handleSubmit = async(a) => {
+    const handleSubmit = async(e) => {
         e.preventDefault();
-
+        console.log('hello');
         const success = await login(formData.username, formData.password);
 
         if(success){
@@ -56,8 +56,8 @@ const Login = () =>{
 
                         <input
                             type='password'
-                            value={formData.username}
-                            onChange={(e) => setFormData({...formData, username: e.target.value})}
+                            value={formData.password}
+                            onChange={(e) => setFormData({...formData, password: e.target.value})}
                             required                                                   
                         />
 

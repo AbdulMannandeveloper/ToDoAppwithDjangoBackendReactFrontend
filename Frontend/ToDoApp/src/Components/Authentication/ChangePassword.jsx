@@ -1,4 +1,4 @@
-import useAuthStore from '../Stores/AuthStore';
+import useAuthStore from './Stores/AuthStore';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -6,8 +6,8 @@ const ChangePassword = () =>{
     const navigate = useNavigate();
 
     const ChangePassword = useAuthStore((state) => state.changePassword);
-    const {isLoading} = useAuthStore((state) => state.isLoading);
-    const {error} = useAuthStore((state) => state.error);
+    const isLoading = useAuthStore((state) => state.isLoading);
+    const error = useAuthStore((state) => state.error);
 
     const [formData, setFormData] = useState({
         username: '',

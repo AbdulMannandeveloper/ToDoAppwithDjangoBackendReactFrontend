@@ -7,13 +7,12 @@ from rest_framework import status
 from .Functionalities.Login.LoginFunctionalities import login_logic
 from .Functionalities.SignUp.SignUpFunctionalities import sign_up_logic
 from .Functionalities.ChangePassword.ChangePassword import change_password_logic
-from Serializers import SignUpSerializer, LoginSerializer, ChangePasswordSerializer
+from .Serializers import SignUpSerializer, LoginSerializer, ChangePasswordSerializer
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
 def login(request):
     serializer = LoginSerializer(data=request.data)
-
     if not serializer.is_valid():
         return Response(serializer.errors, status=400)
 
@@ -21,6 +20,7 @@ def login(request):
     password = serializer.validated_data['password']
 
     try:
+        print('test code')
         tokens = login_logic(request, username, password)
         return Response({'message': 'Success', 'tokens': tokens}, status=200)
     except Exception as e:
@@ -33,13 +33,16 @@ def sign_up(request):
     serializer = SignUpSerializer(data = request.data)
 
     if not serializer.is_valid():
+        print("check")
         return Response(serializer.errors, status=400)
     
     username = serializer.validated_data['username']
     email = serializer.validated_data['email']
     password = serializer.validated_data['password']
+    print("Test Code")
 
     try:
+        print("hey")
         sign_up_logic(username, email, password)
         return Response({'message': 'User Created Successfully'}, status=201)
     except Exception as e:
@@ -48,13 +51,13 @@ def sign_up(request):
 
 
 @api_view(['PUT'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def change_password(request):
     serializer = ChangePasswordSerializer(data = request.data)
 
     if not serializer.is_valid():
         return Response(serializer.errors, status=400)
-    
+    print(serializer)
     username = serializer.validated_data['username']
     old_password = serializer.validated_data['old_password']
     new_password = serializer.validated_data['new_password']

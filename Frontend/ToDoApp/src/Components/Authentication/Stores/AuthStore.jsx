@@ -19,16 +19,18 @@ const useAuthStore = create(
             })
 
             try{
+                console.log("testing login");
                 const response = await axios.post(`${API_URL}login/`, {
                     username: username,
                     password: password,
                 });
 
+                console.log('response');
+
                 const {access, refresh} = response.data.tokens;
 
                 localStorage.setItem('access_token', access);
                 localStorage.setItem('refresh_token', refresh);
-
                 set({ isAuthenticated: true, isLoading: false, error: null });
                 return true;
             }
