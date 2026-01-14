@@ -2,7 +2,7 @@ import { create } from 'zustand';
 
 
 
-const FilterStore = create(
+const useFilterStore = create(
     (set) => ({
         filter: 'all',
 
@@ -14,4 +14,4 @@ const FilterStore = create(
     })
 )
 
-export default FilterStore;
+export default useFilterStore;
